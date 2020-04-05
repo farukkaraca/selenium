@@ -111,12 +111,11 @@ class Insta:
             print("Foto zaten beğenilmiş...")
 
     def likeAllPhotos(self,username=str):
-        self.ScrollDown()
-        time.sleep(5)
         photo_list=[]
-        time.sleep(3)
         self.browser.get("https://www.instagram.com/" + username+"/")
         time.sleep(3)
+        self.scrollDown()
+        time.sleep(5)
         photos=self.browser.find_elements_by_xpath("//div[contains(@class,'v1Nh3 kIKUG  _bz0w')]/a")
 
         for i in photos:
@@ -125,9 +124,8 @@ class Insta:
         for i in photo_list:
             self.like(link=i)
 
-    def ScrollDown(self):
+    def scrollDown(self):
         SCROLL_PAUSE_TIME = 1
-
         last_height = self.browser.execute_script("return document.documentElement.scrollHeight")
         while True:
             self.browser.execute_script("window.scrollTo(0,document.documentElement.scrollHeight);")
@@ -191,7 +189,10 @@ class Insta:
         else:
             print("YANLIŞ SEÇİM YAPTINIZ!!!")
 
+
 insta=Insta()
+
+
 
 
 
